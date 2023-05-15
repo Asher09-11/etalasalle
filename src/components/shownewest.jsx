@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductListNewest = () => {
   const [products, setProducts] = useState([]);
@@ -24,19 +25,15 @@ const ProductListNewest = () => {
           />
           <div className="p-4">
             <h2 className="text-gray-200 font-bold text-2xl mb-2">{product.name}</h2>
-            <div className="text-base bg-gray-300 px-4 py-2 overflow-y-scroll h-36 break-words overflow-hidden">{product.description}</div>
-            <p className="text-gray-200 font-bold text-xl mt-2">
-              Penjual : {product.contactname}
-            </p>
           </div>
           <div className="px-6 pt-4 pb-2">
-            <button
-              onClick={() => window.open("https://wa.me/"+product.contactnumber)}
-              className="bg-gray-100 font-bold py-2 px-4 rounded"
-              rel="noopener noreferrer"
-            >
-              WhatsApp
-            </button>
+            <Link to={`/detail/${product.id}`}>
+                <button
+                className="bg-gray-100 font-bold py-2 px-4 rounded"
+                >
+                    Details
+                </button>
+            </Link>
           </div>
         </div>
       ))}

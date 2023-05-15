@@ -9,6 +9,7 @@ import Jual from './pages/Jual';
 import Makanan from './pages/Makanan';
 import Aksesoris from './pages/Aksesoris';
 import Lainnya from './pages/Lainnya';
+import DetailPage from './pages/detail';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/makanan' element={<Makanan />}></Route>
           <Route path='/aksesoris' element={<Aksesoris />}></Route>
           <Route path='/lainnya' element={<Lainnya />}></Route>
+          <Route path='/detail/:id' element={<DetailPage />}></Route>
         </Routes>
     </div>
   );

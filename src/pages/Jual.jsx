@@ -11,6 +11,8 @@ function Jual() {
   const [type, setType] = useState('');
   const [contactname, setContactName] = useState('');
   const [contactnumber, setContactNumber] = useState('');
+  const [price, setPrice] = useState("");
+
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -40,6 +42,10 @@ function Jual() {
     setContactNumber(event.target.value);
   };
 
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
   const handleUpload = async () => {
     if (!file) {
       setErrorMsg("Please select an image to upload");
@@ -54,6 +60,7 @@ function Jual() {
     formData.append("type", type);
     formData.append("contactname", contactname);
     formData.append("contactnumber", contactnumber);
+    formData.append("price", price);
   
     try {
       const response = await axios.post("http://localhost:5000/product", formData, {
@@ -69,6 +76,7 @@ function Jual() {
       setType("");
       setContactName("");
       setContactNumber("");
+      setPrice("");
     } catch (error) {
       console.log(error.message);
     }
@@ -106,6 +114,9 @@ function Jual() {
             </li>
             <li>
               <h4 className="font-bold">Nama Produk</h4>
+            </li>
+            <li>
+              <h4 className="font-bold">Harga</h4>
             </li>
             <li>
               <h4 className="font-bold">Kategori</h4>
@@ -147,6 +158,17 @@ function Jual() {
                     name="title"
                     value={title}
                     onChange={handleTitleChange}
+                    className='w-[500px]'
+                />
+              </div>
+            </li>
+            <li>
+              <div className="pr-4 h-8 w-[500px] flex rounded-lg border-[1px] border-[#1A3A23]">
+                <input
+                    type="number"
+                    name="price"
+                    value={price}
+                    onChange={handlePriceChange}
                     className='w-[500px]'
                 />
               </div>
@@ -201,7 +223,39 @@ function Jual() {
         </div>
       </div>
 
-      <footer className="my-40 border-t-4"></footer>
+      <footer class="mt-40 mb-5 border-t-4">
+        <div class="container py-16 mx-auto flex justify-between gap-24">
+          <div class="my-auto">
+            <div>
+              <Link to={`/categories`}>
+                <h1 class="text-2xl font-bold text-[#1A3A23]"><span class="font-normal text-[#307543]">eta</span>lasalle</h1>
+              </Link>
+              <p class="mt-6 text-xs text-[#718075]">
+                Platform yang memfasitilasi setiap warga Unika De La Salle <br />
+                Manado dalam melakukan penggalangan dana.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-[#1A3A23]">Produk</h4>
+            <ul class="space-y-4 mt-6 text-[#718075]">
+              <li><Link to={'/makanan'}>Makanan & Minuman</Link></li>
+              <li><Link to={'/aksesoris'}>Aksesoris</Link></li>
+              <li><Link to={'/lainnya'}>Lainnya</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold text-[#1A3A23]">Hubungi Kami</h4>
+            <ul class="space-y-4 mt-6 text-[#718075]">
+              <li><a href="https://github.com/yeremialucky">20013022@unikadelasalle.ac.id</a></li>
+              <li><a href="https://github.com/Asher09-11">21013009@unikadelasalle.ac.id</a></li>
+            </ul>
+          </div>
+        </div>
+        <h5 class="text-center text-[#BDBBBB] font-bold justify-center">COPYRIGHT @2023 | I/O DEVELOPMENT</h5>
+      </footer>
 
     </>
   );
